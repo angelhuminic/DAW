@@ -1,1 +1,94 @@
+using System;
+using System.Collections.Generic;
+
+public class Materie
+{
+    public string Titlu 
+    { 
+        get; 
+        set; 
+    }
+    public string Durata 
+    { 
+        get; 
+        set; 
+    }
+
+    public Materie(string titlu, string durata)
+    {
+        Titlu = titlu;
+        Durata = durata;
+    }
+}
+
+public class Student
+{
+    public string Nume 
+    { 
+        get; 
+        set; 
+    }
+    public string Prenume 
+    { 
+        get; 
+        set; 
+    }
+    public string Email 
+    { 
+        get; 
+        set; 
+    }
+    public List<Materie> Materii 
+    { 
+        get; 
+        set; 
+    }
+
+    public Student(string nume, string prenume, string email)
+    {
+        Nume = nume;
+        Prenume = prenume;
+        Email = email;
+
+        Materii = new List<Materie>();
+    }
+
+    public void AdaugareMaterie(Materie materie)
+    {
+        Materii.Add(materie);
+    }
+
+    public void AfisareaMaterii()
+    {
+        Console.WriteLine(Environment.NewLine+$"{Nume} {Prenume} trebuie sa participe la urmatoarele materii:");
+        foreach (var materie in Materii)
+        {
+            Console.WriteLine($"- {materie.Titlu} ({materie.Durata})");
+        }
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        // Mai intai cream studentii
+        Student student1 = new Student("Alex", "Andrei", "alex.andrei@email.com");
+        student1.AdaugareMaterie(new Materie("Informatica", "7 ore"));
+        student1.AdaugareMaterie(new Materie("Matematica", "5 ore"));
+
+        Student student2 = new Student("Ana", "Andreea", "ana.andreea@email.com");
+        student2.AdaugareMaterie(new Materie("Istorie", "4 ore"));
+        student2.AdaugareMaterie(new Materie("Geografie", "4 ore"));
+
+        Student student3 = new Student("Bogdan", "Cristian", "bogdan.cristian@email.com");
+        student3.AdaugareMaterie(new Materie("Biologie", "5 ore"));
+        student3.AdaugareMaterie(new Materie("Matematica", "4 ore"));
+
+        // Apoi afisam materiile
+        student1.AfisareaMaterii();
+        student2.AfisareaMaterii();
+        student3.AfisareaMaterii();
+    }
+}
 
